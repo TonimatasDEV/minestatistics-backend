@@ -5,17 +5,16 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"slices"
 	"strings"
 	"time"
 )
 
-const url = "https://gist.githubusercontent.com/TonimatasDEV/5ae290f13b45b05e2192ae2ceb8bc4b5/raw/minecraft-servers"
-
 var Servers []string
 
 func addServerList() ([]string, bool) {
-	gisUrl := fmt.Sprintf("%s?t=%d", url, time.Now().UnixNano())
+	gisUrl := fmt.Sprintf("%s?t=%d", os.Getenv("URL"), time.Now().UnixNano())
 	resp, err := http.Get(gisUrl)
 
 	if err != nil {
