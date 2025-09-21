@@ -26,7 +26,7 @@ func updateServer(ip string) {
 
 func Update() {
 	go func() {
-		ticker := time.NewTicker(1 * time.Second)
+		ticker := time.NewTicker(3 * time.Second)
 		defer ticker.Stop()
 
 		for t := range ticker.C {
@@ -34,7 +34,7 @@ func Update() {
 				go updateServer(server)
 			}
 
-			time.Sleep(time.Millisecond * 950)
+			time.Sleep(time.Millisecond * 2900)
 
 			if isDebug() {
 				log.Println("Player counts updated:", t.Format(time.TimeOnly))
