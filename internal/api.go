@@ -13,7 +13,7 @@ import (
 func InitApi() {
 	router := httprouter.New()
 	router.GET("/", HandleMain)
-	router.GET("/servers", HandleSeconds)
+	router.GET("/servers", HandleServers)
 
 	log.Printf("Server running on http://localhost:%s\n", os.Getenv("PORT"))
 	server := &http.Server{
@@ -27,7 +27,7 @@ func InitApi() {
 
 	err := server.ListenAndServe()
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 }
 
@@ -45,7 +45,7 @@ func HandleMain(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 	}
 }
 
-func HandleSeconds(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
+func HandleServers(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(PlayerCounts)
