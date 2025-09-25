@@ -13,5 +13,5 @@ func main() {
 
 	internal.UpdateServerList()
 	internal.Update()
-	internal.InitApi()
+	internal.InitWebSocket()
 }
